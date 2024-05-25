@@ -1,0 +1,16 @@
+{
+  "首页": "Dashboard",
+  "权限测试": "Permission Test",
+  "page_permission": "Page Permission",
+  "role_permission": "Role Permission (Admin List)",
+  "table": "Table",
+  "error_page": "Error Page",
+  "nested_route": "Nested Route",
+  "menu1": "Menu 1",
+  "menu2": "Menu 2",
+  "menu2-1": "Menu 2-1",
+  "menu2-2": "Menu 2-2",
+  "internationalization": "Internationalization",
+  "system_layout_config": "System Layout Configuration",
+  "logout": "Logout"
+}
