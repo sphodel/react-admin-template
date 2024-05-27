@@ -27,12 +27,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <NotFound />,
     children: [
-      {
-        path: "*",
-        element: <NotFound />,
-      },
       {
         path: "dashboard",
         element: <Dashboard />,
@@ -89,6 +84,10 @@ const router = createBrowserRouter([
         element: <Tables />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
   {
     path: "Auth",

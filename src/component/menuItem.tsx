@@ -33,7 +33,7 @@ const MenuItem: React.FC<menuItemProps> = ({ item }) => {
     if (location.state) {
       setSelected(location.state.path);
     }
-  }, []);
+  }, [location.state]);
   return fold ? (
     <Foldmenu item={item} />
   ) : (
