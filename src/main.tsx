@@ -1,7 +1,9 @@
-import React, { lazy, Suspense } from "react";
+import React, { Fragment, lazy, Suspense, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import Dashboard from "./pages/dashborad";
 import { client } from "./component/client.ts";
+import "nprogress/nprogress.css";
+import nprogress from "nprogress";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const Authority = lazy(() => import("./pages/authority"));
 const ErrorPage = lazy(() => import("./pages/error-page"));
@@ -19,10 +21,17 @@ import { AuthProvider } from "./component/AuthContext.tsx";
 import Login from "./pages/login";
 import Register from "./pages/login/register.tsx";
 import NotFound from "./pages/error-page/NotFound.tsx";
-import { Spin } from "antd";
 import { ApolloProvider } from "@apollo/client";
 import Layout from "./component/layout.tsx";
-const Loading = () => <Spin />;
+const Loading = () => {
+  useEffect(() => {
+    nprogress.start();
+    return () => {
+      nprogress.done();
+    };
+  }, []);
+  return <Fragment />;
+};
 
 const router = createBrowserRouter([
   {

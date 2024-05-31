@@ -29,7 +29,7 @@ const Login = () => {
   const { mode } = useTheme();
   return (
     <div
-      className={`h-screen w-screen bg-[#F9FAFB] flex items-center justify-center ${mode ? "bg-[#1e1e1e] text-white" : "bg-[#F9FAFB]"}`}
+      className={`h-screen w-screen flex items-center justify-center ${mode ? "bg-[#1e1e1e] text-white" : "bg-[#F9FAFB]"}`}
     >
       {contextHolder}
       <div
