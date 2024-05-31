@@ -14,12 +14,12 @@ const Menu21 = lazy(() => import("./pages/route-page/menu2-1"));
 const Menu22 = lazy(() => import("./pages/route-page/menu2-2"));
 import { SidebarProvider } from "./pages/system/component/menuLocation.tsx";
 import { IsSidebarFold } from "./pages/system/component/menuFold.tsx";
-import { ThemeChange, useTheme } from "./component/theme.tsx";
+import { ThemeChange } from "./component/theme.tsx";
 import { AuthProvider } from "./component/AuthContext.tsx";
 import Login from "./pages/login";
 import Register from "./pages/login/register.tsx";
 import NotFound from "./pages/error-page/NotFound.tsx";
-import { ConfigProvider, Spin, theme } from "antd";
+import { Spin } from "antd";
 import { ApolloProvider } from "@apollo/client";
 import Layout from "./component/layout.tsx";
 const Loading = () => <Spin />;
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "dashboard",

@@ -32,7 +32,7 @@ const Foldmenu: React.FC<menuItemProps> = ({ item }) => {
                   ))}
                 </div>
               }
-              placement={"right"}
+              placement={"left"}
             >
               {im.name}
             </Popover>

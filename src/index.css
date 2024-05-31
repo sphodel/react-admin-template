@@ -9,8 +9,15 @@
     z-index: 10;
     width: 6px;
 }
-
+.menu-dark::-webkit-scrollbar{
+    z-index: 10;
+    width: 6px;
+}
 .menu::-webkit-scrollbar-thumb {
-    background-color:#F5F5F5;
+    background-color:#D8D8D8;
+    border-radius: 10px;
+}
+.menu-dark::-webkit-scrollbar-thumb {
+    background-color: #363535;
     border-radius: 10px;
 }

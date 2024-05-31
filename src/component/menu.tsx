@@ -11,7 +11,7 @@ const Menu = () => {
   const newMenuItems = filterMenuItems(menuItems, isAuthorized);
   return (
     <div
-      className={`${fold ? "w-12" : "w-48"} flex flex-col h-screen border ${mode ? "border-[#2e2e2e] bg-[#2e2e2e]" : ""} overflow-auto menu`}
+      className={`${fold ? "w-12" : "w-48"} flex flex-col h-screen border ${mode ? "border-[#2e2e2e] bg-[#2e2e2e] menu-dark" : "menu"} overflow-auto `}
     >
       {newMenuItems.map((item, i) => (
         <MenuItem item={item} key={i} />
