@@ -15,12 +15,30 @@ type itemType = {
 type menuItemProps = {
   item: itemType | SubmenuItemType;
 };
+
 const Foldmenu: React.FC<menuItemProps> = ({ item }) => {
   const content = (
-    <div className={"flex w-40 flex-col gap-6"}>
+    <div className={"flex w-20 flex-col gap-6"}>
       {item.submenu?.map((im, i) => (
         <a key={i} href={im.route}>
-          {im.name}
+          {im.submenu ? (
+            <Popover
+              content={
+                <div className={"flex w-20 flex-col gap-6"}>
+                  {im.submenu?.map((sub, i) => (
+                    <a key={i} href={sub.route}>
+                      {sub.name}
+                    </a>
+                  ))}
+                </div>
+              }
+              placement={"right"}
+            >
+              {im.name}
+            </Popover>
+          ) : (
+            <div>{im.name}</div>
+          )}
         </a>
       ))}
     </div>

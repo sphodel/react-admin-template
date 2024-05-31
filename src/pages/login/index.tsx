@@ -1,6 +1,7 @@
 import { Input, Button, message } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../component/theme.tsx";
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -10,28 +11,30 @@ const Login = () => {
     if (email == "123456" && password == "123456") {
       const data = { email: email, password: password };
       localStorage.setItem("account", JSON.stringify(data));
-      navigate("/dashboard");
       void messageApi.open({
         type: "success",
         content: "登录成功",
       });
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1000);
+      return;
     }
     void messageApi.open({
       type: "error",
       content: "账号不存在",
     });
+    return;
   };
-
+  const { mode } = useTheme();
   return (
     <div
-      className={
-        "h-screen w-screen bg-[#F9FAFB] flex items-center justify-center"
-      }
+      className={`h-screen w-screen bg-[#F9FAFB] flex items-center justify-center ${mode ? "bg-[#1e1e1e] text-white" : "bg-[#F9FAFB]"}`}
     >
       {contextHolder}
       <div
         style={{ width: "565px", height: "488px" }}
-        className={"bg-white flex flex-col px-16"}
+        className={`flex flex-col px-16 ${mode ? "bg-[#2e2e2e]" : "bg-white"}`}
       >
         <h2
           style={{ textAlign: "center" }}

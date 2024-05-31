@@ -14,14 +14,6 @@ const ErrorPage = () => {
       </div>
       {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
       <img src={page_404} alt={""} className={"w-96"} />
-      <Button
-        className={"mt-6 bg-black text-white"}
-        onClick={() => {
-          navigate("/dashboard");
-        }}
-      >
-        BACK TO HOME PAGE
-      </Button>
     </div>
   );
 };

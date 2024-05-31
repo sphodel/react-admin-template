@@ -5,6 +5,7 @@ import { useSidebarFold } from "../pages/system/component/menuFold.tsx";
 import Foldmenu from "./foldmenu.tsx";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "./theme.tsx";
 type SubmenuItemType = {
   name: string;
   route: string;
@@ -29,6 +30,7 @@ const MenuItem: React.FC<menuItemProps> = ({ item }) => {
   const { fold } = useSidebarFold();
   const navigate = useNavigate();
   const location = useLocation();
+  const { mode } = useTheme();
   useEffect(() => {
     if (location.state) {
       setSelected(location.state.path);
@@ -41,9 +43,7 @@ const MenuItem: React.FC<menuItemProps> = ({ item }) => {
       {"submenu" in item ? (
         <div
           onClick={handleClick}
-          className={
-            "p-4 font-light text-gray-600 hover:bg-[#F0FCFF] hover:text-[#3EC0DD] cursor-pointer flex justify-between"
-          }
+          className={`p-4 font-light text-gray-600 cursor-pointer flex justify-between ${mode ? "hover:bg-[#263445]" : "hover:bg-[#F0FCFF] hover:text-[#3EC0DD]"}`}
         >
           <div>
             {"icon" in item && item.icon}
@@ -62,7 +62,7 @@ const MenuItem: React.FC<menuItemProps> = ({ item }) => {
           }}
         >
           <div
-            className={`p-4 font-light text-gray-600 hover:bg-[#F0FCFF] hover:text-[#3EC0DD] focus:bg-[#DFF9FF] focus:font-medium focus:text-[#DFF9FF] focus:outline-none cursor-pointer ${selected === item.route ? "bg-[#DFF9FF]" : ""}`}
+            className={`p-4 font-light text-gray-600 ${mode ? `hover:bg-[#263445] ${selected === item.route ? "bg-[#263445]" : ""}` : `hover:bg-[#F0FCFF] hover:text-[#3EC0DD] ${selected === item.route ? "bg-[#F0FCFF]" : ""}`}  focus:bg-[#DFF9FF] focus:font-medium focus:text-[#DFF9FF] focus:outline-none cursor-pointer `}
           >
             {"icon" in item && item.icon}
             <span className={"text-sm pl-4"}>{item.name}</span>

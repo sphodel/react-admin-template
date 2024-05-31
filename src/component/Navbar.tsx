@@ -18,7 +18,7 @@ const menuItems = [
   {
     name: "权限测试",
     icon: <LockOutlined />,
-    route: "/permission",
+    route: "/permission/page",
     submenu: [
       {
         name: "页面权限",
@@ -43,7 +43,7 @@ const menuItems = [
   {
     name: "路由嵌套",
     icon: <MenuUnfoldOutlined />,
-    route: "/menu",
+    route: "/menu/menu1",
     submenu: [
       {
         name: "菜单1",

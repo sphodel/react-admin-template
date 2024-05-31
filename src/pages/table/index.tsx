@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Button, Modal, Form, Input, InputNumber, Space, Table } from "antd";
+import {
+  Button,
+  Modal,
+  Form,
+  Input,
+  InputNumber,
+  Space,
+  Table,
+  message,
+} from "antd";
 interface DataType {
   key: string;
   name: string;
@@ -23,6 +32,7 @@ const Tables: React.FC = () => {
   const [editingKey, setEditingKey] = useState<string | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage();
   const [name, setName] = useState("");
   const edit = (record: Partial<DataType>) => {
     form.setFieldsValue({ name: "", age: "", address: "", ...record });
@@ -40,6 +50,17 @@ const Tables: React.FC = () => {
       } else {
         newData.push(row);
       }
+      if (editingKey) {
+        void messageApi.open({
+          type: "success",
+          content: "修改成功",
+        });
+      } else {
+        void messageApi.open({
+          type: "success",
+          content: "添加成功",
+        });
+      }
       setData(newData);
       setEditingKey(null);
       setIsModalVisible(false);
@@ -49,6 +70,10 @@ const Tables: React.FC = () => {
   };
 
   const handleDelete = (key: React.Key) => {
+    void messageApi.open({
+      type: "success",
+      content: "删除成功",
+    });
     setData(data.filter((item) => item.key !== key));
   };
 
@@ -77,7 +102,7 @@ const Tables: React.FC = () => {
     {
       title: "Action",
       key: "action",
-      render: (_: any, record: DataType) => (
+      render: (record: DataType) => (
         <Space size="middle">
           <Button type="link" onClick={() => edit(record)}>
             修改
@@ -92,8 +117,10 @@ const Tables: React.FC = () => {
   const filteredData = data.filter((item) => {
     return item.name.toLowerCase().includes(name.toLowerCase());
   });
+
   return (
     <div>
+      {contextHolder}
       <Button type="primary" onClick={addNew} style={{ marginBottom: 16 }}>
         添加
       </Button>

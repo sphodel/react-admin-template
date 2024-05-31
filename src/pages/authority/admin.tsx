@@ -198,13 +198,27 @@ const Admin = () => {
     setIsModalOpen(false);
   };
   const handleDelete = (key: React.Key) => {
+    const roleName = dataSource.find((data) => data.key === key);
+    if (roleName.role == "admin") {
+      void messageApi.open({
+        type: "error",
+        content: "无法删除管理员账号",
+      });
+      return;
+    }
     if (dataSource.length == 1) {
       void messageApi.open({
         type: "error",
         content: "至少保留一个账号",
       });
       return;
+    } else {
+      void messageApi.open({
+        type: "success",
+        content: "删除成功",
+      });
     }
+
     const newData = dataSource.filter((item) => item.key !== key);
     setDataSource(newData);
   };

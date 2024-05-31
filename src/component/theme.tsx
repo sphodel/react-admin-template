@@ -1,4 +1,5 @@
 import { createContext, useState, useContext } from "react";
+import { ConfigProvider, theme } from "antd";
 interface SidebarFoldType {
   mode: boolean;
   toggleTheme: () => void;
@@ -19,7 +20,13 @@ export const ThemeChange = ({ children }) => {
   };
 
   return (
-    <Theme.Provider value={{ mode, toggleTheme }}>{children}</Theme.Provider>
+    <ConfigProvider
+      theme={{
+        algorithm: mode ? theme.darkAlgorithm : theme.defaultAlgorithm,
+      }}
+    >
+      <Theme.Provider value={{ mode, toggleTheme }}>{children}</Theme.Provider>
+    </ConfigProvider>
   );
 };
 
