@@ -7,7 +7,6 @@ import nprogress from "nprogress";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const Authority = lazy(() => import("./pages/authority"));
 const ErrorPage = lazy(() => import("./pages/error-page"));
-const Internation = lazy(() => import("./pages/i18n"));
 const RoutePage = lazy(() => import("./pages/route-page"));
 const System = lazy(() => import("./pages/system"));
 const Tables = lazy(() => import("./pages/table"));
@@ -59,10 +58,6 @@ const router = createBrowserRouter([
       {
         path: "error-page",
         element: <ErrorPage />,
-      },
-      {
-        path: "internation",
-        element: <Internation />,
       },
       {
         path: "menu",

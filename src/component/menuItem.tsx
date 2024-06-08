@@ -36,7 +36,17 @@ const MenuItem: React.FC<menuItemProps> = ({ item }) => {
       setSelected(location.state.path);
     }
   }, [location.state]);
-  return fold ? (
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  return fold || windowWidth <= 768 ? (
     <Foldmenu item={item} />
   ) : (
     <div>

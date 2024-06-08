@@ -1,6 +1,7 @@
 import { Button, Input, message, Modal, Table, Tree } from "antd";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../component/AuthContext.tsx";
+import { useTheme } from "../../component/theme.tsx";
 interface DataType {
   role: string;
   name: string;
@@ -10,7 +11,7 @@ interface DataType {
 const initialPermissions = {
   admin: ["1", "2", "8", "9", "3", "4", "5", "10", "11", "12", "13", "6", "7"],
   user: ["1", "8", "3", "4", "5", "10", "11", "12", "13", "6", "7"],
-  guest: ["1"],
+  guest: ["1", "7"],
 };
 const Admin = () => {
   const { setNewPermission } = useAuth();
@@ -22,6 +23,7 @@ const Admin = () => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [roleAuth, setRoleAuth] = useState("admin");
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+  const { mode } = useTheme();
   const [permissions, setPermissions] = useState<{ [key: string]: string[] }>(
     initialPermissions,
   );
@@ -123,14 +125,14 @@ const Admin = () => {
       ],
     },
     {
-      title: "国际化",
+      title: "系统布局配置",
       key: "6",
-      route: "/internation",
+      route: "/setting",
     },
     {
-      title: "系统布局配置",
+      title: "退出",
       key: "7",
-      route: "/setting",
+      route: "/Auth/login",
     },
   ];
 
@@ -172,9 +174,20 @@ const Admin = () => {
   };
   const handleOk = () => {
     if (roleAuth) {
+      if (!selectedKeys.includes("7")) {
+        void messageApi.open({
+          type: "error",
+          content: "必须包含退出页面",
+        });
+        return;
+      }
       if (selectedKeys.length > 0) {
         setPermissions((prev) => ({ ...prev, [roleAuth]: selectedKeys }));
         setIsAuthOpen(false);
+        void messageApi.open({
+          type: "success",
+          content: "编辑成功",
+        });
       } else {
         void messageApi.open({
           type: "error",
@@ -196,6 +209,10 @@ const Admin = () => {
     };
     setDataSource([...dataSource, newData]);
     setIsModalOpen(false);
+    void messageApi.open({
+      type: "success",
+      content: "添加成功",
+    });
   };
   const handleDelete = (key: React.Key) => {
     const roleName = dataSource.find((data) => data.key === key);
@@ -248,7 +265,7 @@ const Admin = () => {
         <div className={"flex flex-col"}>
           <div className={"flex gap-4 pb-4"}>
             <select
-              className={"flex-1 border"}
+              className={`flex-1 border ${mode ? "bg-[#141414] border-[#424242]" : ""} rounded`}
               value={role}
               onChange={(e) => setRole(e.target.value)}
             >

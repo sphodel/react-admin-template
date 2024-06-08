@@ -23,6 +23,7 @@ const Foldmenu: React.FC<menuItemProps> = ({ item }) => {
         <a key={i} href={im.route}>
           {im.submenu ? (
             <Popover
+              trigger={"click"}
               content={
                 <div className={"flex w-20 flex-col gap-6"}>
                   {im.submenu?.map((sub, i) => (
@@ -44,7 +45,7 @@ const Foldmenu: React.FC<menuItemProps> = ({ item }) => {
     </div>
   );
   return item.submenu ? (
-    <Popover content={content} placement={"right"}>
+    <Popover content={content} placement={"right"} trigger={"click"}>
       <a
         className={
           "p-4 font-light text-gray-600 hover:bg-[#F0FCFF] hover:text-[#3EC0DD] cursor-pointer flex-col"

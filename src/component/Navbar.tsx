@@ -1,6 +1,5 @@
 import {
   CloseCircleOutlined,
-  GlobalOutlined,
   HomeOutlined,
   LockOutlined,
   LogoutOutlined,
@@ -18,7 +17,6 @@ const menuItems = [
   {
     name: "权限测试",
     icon: <LockOutlined />,
-    route: "/permission/page",
     submenu: [
       {
         name: "页面权限",
@@ -43,7 +41,6 @@ const menuItems = [
   {
     name: "路由嵌套",
     icon: <MenuUnfoldOutlined />,
-    route: "/menu/menu1",
     submenu: [
       {
         name: "菜单1",
@@ -51,7 +48,6 @@ const menuItems = [
       },
       {
         name: "菜单2",
-        route: "/menu/menu2",
         submenu: [
           {
             name: "菜单2-1",
@@ -64,11 +60,6 @@ const menuItems = [
         ],
       },
     ],
-  },
-  {
-    name: "国际化",
-    icon: <GlobalOutlined />,
-    route: "/internation",
   },
   {
     name: "系统布局配置",
